@@ -1,0 +1,38 @@
+<!--use:main-->
+
+<!--define:title-->Sistema de Errores<!--/define:title-->
+
+<!--define:script-->
+	
+<!--/define:script-->
+
+<!--define:main-->
+
+	<!--include:errores/section/nav-->
+	
+	<div class="container table-responsive table-bordered table-hover">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>HOST</th>
+					<th>PORT</th>
+					<th>FECHA</th>
+					<th>PARENT</th>
+					<th>ERROR</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="row in errores.collection">
+					<td>{{row.host}}</td>
+					<td>{{row.port}}</td>
+					<td>{{row.date}}</td>
+					<td>{{row.parent}}</td>
+					<td>{{row.error}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<script type="text/javascript" src="/errores/_.js"></script>
+
+<!--/define:main-->
