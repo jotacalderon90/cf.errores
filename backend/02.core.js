@@ -1,5 +1,6 @@
 "use strict";
 
+const logger = require('cl.jotacalderon.cf.framework/lib/log')('api.02.core');
 const mongodb = require('cl.jotacalderon.cf.framework/lib/mongodb');
 
 module.exports = {
@@ -13,21 +14,19 @@ module.exports = {
 		*/
 		try{
 			
-			if(!req.headers['x-api-key'] || req.headers['x-api-key'].trim()===''){
-				throw('no-x-api-key');
-			}
-			
-			if( req.headers['x-api-key'] === process.env.X_API_KEY ) {
+			if( req.headers && req.headers['x-api-key'] && req.headers['x-api-key'].trim()!='' &&  req.headers['x-api-key'].trim() === process.env.X_API_KEY ) {
 				
 				req.body.date = new Date();
 				await mongodb.insertOne('errores',req.body);
 				
+			}else{
+				throw('no api-key');
 			}
-			res.send({data: true});
+		
 		}catch(error){
-			console.log(error);
-			res.send({data: true});
+			logger.error(error);
 		}
+		res.send({data: true});
 	},
 	
 	//@route('/api/error/collection')
@@ -35,9 +34,9 @@ module.exports = {
 	//@roles(['root'])
 	collection: async function(req,res){
 		try{
-			res.send({data: await mongodb.find('errores')});
+			res.send({data: await mongodb.find('errores', {}, {sort: {date: -1}})});
 		}catch(error){
-			console.log(error);
+			logger.error(error);
 			res.send({error: error});
 		}
 	}
