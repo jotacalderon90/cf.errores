@@ -14,6 +14,9 @@ module.exports = {
 		*/
 		try{
 			
+			logger.info(req.headers);
+			logger.info(req.body);
+			
 			if( req.headers && req.headers['x-api-key'] && req.headers['x-api-key'].trim()!='' &&  req.headers['x-api-key'].trim() === process.env.X_API_KEY ) {
 				
 				req.body.date = new Date();
