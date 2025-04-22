@@ -9,8 +9,7 @@
 	},
 	"dependencies": {
 		"cl.jotacalderon.cf.framework": "0.0.31",
-		"node-cron": "latest",
-		"moment": "latest"
+		"node-cron": "latest"
 	},
 	"devDependencies": {		
 		"nodemon": "latest"
