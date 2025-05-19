@@ -6,7 +6,7 @@ COPY ["package.json","/srv/cf.errores/"]
 
 WORKDIR /srv/cf.errores
 
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 COPY [".", "/srv/cf.errores/"]
 
