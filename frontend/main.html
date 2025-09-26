@@ -21,13 +21,12 @@
 	</head>
 	<body>
 		
-		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/node_modules/luxon/build/global/luxon.min.js"></script>
 		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/node_modules/vue/dist/vue.global.prod.js"></script>
 		<script src="{{data:process.env.HOST_ARCHIVOSPUBLICOS}}/assets/lib/trascender/global.js"></script>
 		<!--define:script-->
-		
+			
 		<div id="app">
 			<div id="loader" v-show="loader.active">
 				<i class="fa fa-spin fa-spinner"></i> {{loader.title}}
