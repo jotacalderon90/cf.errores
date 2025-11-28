@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-CMD mkdir /srv/cf.errores
+RUN mkdir -p /srv/cf.errores
 
 COPY ["package.json","/srv/cf.errores/"]
 
