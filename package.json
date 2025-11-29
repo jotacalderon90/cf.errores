@@ -1,17 +1,17 @@
 {
-	"name": "cl.jotacalderon.cf.errores",
-	"description": "sistema para la gestion de errores en aplicaciones externas",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node app",
-		"dev": "npx nodemon --legacy-watch app  --ignore frontend"
-	},
-	"dependencies": {
-		"cl.jotacalderon.cf.framework": "0.0.55",
-		"node-cron": "latest"
-	},
-	"devDependencies": {		
-		"nodemon": "latest"
-	}
+  "name": "cl.jotacalderon.cf.errores",
+  "description": "sistema para la gestion de errores en aplicaciones externas",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app",
+    "dev": "npx nodemon --legacy-watch app  --ignore frontend"
+  },
+  "dependencies": {
+    "cl.jotacalderon.cf.framework": "0.0.57",
+    "node-cron": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
 }
