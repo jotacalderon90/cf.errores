@@ -12,27 +12,64 @@
 
 	<!--include:header-->
 	
-	<div class="container table-responsive table-bordered table-hover mt-4">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>HOST</th>
-					<th>PORT</th>
-					<th>FECHA</th>
-					<th>PARENT</th>
-					<th>ERROR</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="row in errores.collection">
-					<td>{{row.host}}</td>
-					<td>{{row.port}}</td>
-					<td>{{row.date}}</td>
-					<td>{{row.parent}}</td>
-					<td>{{row.error}}</td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="container mt-4 mb-5">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="mb-0"><i class="fas fa-bug text-danger"></i> Registro de Errores</h4>
+			<div class="d-flex align-items-center">
+				<label class="me-2 fw-bold text-muted mb-0"><i class="fas fa-filter"></i> Filtrar por Dominio:</label>
+				<select class="form-select form-select-sm w-auto shadow-sm" v-model="errores.filterDomain" @change="errores.applyFilters()">
+					<option value="">Todos los dominios</option>
+					<option v-for="domain in errores.domains" :value="domain">{{domain}}</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="card shadow-sm border-0">
+			<div class="card-body p-0 table-responsive">
+				<table class="table table-hover table-striped mb-0 align-middle">
+					<thead class="table-light">
+						<tr>
+							<th @click="errores.toggleSort('host')" class="cursor-pointer" style="user-select: none;">
+								HOST
+								<i class="fas" :class="{'fa-sort text-muted': errores.sortColumn !== 'host', 'fa-sort-up text-primary': errores.sortColumn === 'host' && errores.sortOrder === 1, 'fa-sort-down text-primary': errores.sortColumn === 'host' && errores.sortOrder === -1}"></i>
+							</th>
+							<th @click="errores.toggleSort('port')" class="cursor-pointer" style="user-select: none;">
+								PORT
+								<i class="fas" :class="{'fa-sort text-muted': errores.sortColumn !== 'port', 'fa-sort-up text-primary': errores.sortColumn === 'port' && errores.sortOrder === 1, 'fa-sort-down text-primary': errores.sortColumn === 'port' && errores.sortOrder === -1}"></i>
+							</th>
+							<th @click="errores.toggleSort('date')" class="cursor-pointer" style="user-select: none;">
+								FECHA
+								<i class="fas" :class="{'fa-sort text-muted': errores.sortColumn !== 'date', 'fa-sort-up text-primary': errores.sortColumn === 'date' && errores.sortOrder === 1, 'fa-sort-down text-primary': errores.sortColumn === 'date' && errores.sortOrder === -1}"></i>
+							</th>
+							<th @click="errores.toggleSort('parent')" class="cursor-pointer" style="user-select: none;">
+								PARENT
+								<i class="fas" :class="{'fa-sort text-muted': errores.sortColumn !== 'parent', 'fa-sort-up text-primary': errores.sortColumn === 'parent' && errores.sortOrder === 1, 'fa-sort-down text-primary': errores.sortColumn === 'parent' && errores.sortOrder === -1}"></i>
+							</th>
+							<th>ERROR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="row in errores.displayCollection">
+							<td class="fw-semibold">{{row.host}}</td>
+							<td><span class="badge bg-secondary">{{row.port}}</span></td>
+							<td class="text-nowrap"><i class="far fa-clock text-muted me-1"></i> {{row.date}}</td>
+							<td>{{row.parent}}</td>
+							<td class="text-danger" style="max-width: 400px; word-wrap: break-word;">{{row.error}}</td>
+						</tr>
+						<tr v-if="errores.displayCollection && errores.displayCollection.length === 0">
+							<td colspan="5" class="text-center py-4 text-muted">
+								<i class="fas fa-inbox fa-2x mb-2 d-block"></i> No se encontraron errores para este dominio.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
+
+	<style>
+		.cursor-pointer { cursor: pointer; }
+		thead th:hover { background-color: #f8f9fa; }
+	</style>
 
 <!--/define:main-->
